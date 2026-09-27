@@ -7,9 +7,9 @@
 cask "lean-studio" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.9.0"
-  sha256 arm:   "c70328c33b20fcebf2b24cf11b9db08249c78bf6ba400926eba4f204fd2498ed",
-         intel: "7579684d5f15a9e387bf86815d9f51ce9f664ce5750e2c4acb6720c417e0762f"
+  version "0.9.1"
+  sha256 arm:   "05801db82a3dfe21e2df340716fd017ffacaed27e6c8156e0733f6394b079b1c",
+         intel: "94c5edcafc686e7f2bec488271ccb5ce8dfebce6f6c897a145672afde249443a"
 
   url "https://github.com/keithadler/leanstudio/releases/download/v#{version}/LeanStudio-#{version}-osx-#{arch}.zip"
   name "Lean Studio"
@@ -28,8 +28,9 @@ cask "lean-studio" do
   # `leanstudio --mcp` runs the MCP server for AI assistants; `leanstudio path/to/project` opens a project.
   binary "#{appdir}/Lean Studio.app/Contents/MacOS/LeanStudio", target: "leanstudio"
 
-  # Settings only. The tutorial and playground in ~/Documents/Lean Studio hold the person's own work, so they stay.
-  zap trash: "~/.config/LeanStudio"
+  # Settings and the crash log only. The tutorial and playground in ~/Documents/Lean Studio hold the person's own work,
+  # so they stay.
+  zap trash: "~/Library/Application Support/LeanStudio"
 
   caveats <<~EOS
     Lean Studio needs elan, Lean's toolchain manager. If you don't have it, Lean Studio
