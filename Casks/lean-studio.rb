@@ -7,9 +7,9 @@
 cask "lean-studio" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.7.0"
-  sha256 arm:   "4d114154da557d43bcb605b8a26e2ac5f1ef04c9f0c0e1aef5720a0ca8176424",
-         intel: "586753a529618096c83a9b0a311441b26fabb34748fce3acf3867c8ee2d88820"
+  version "0.9.0"
+  sha256 arm:   "c70328c33b20fcebf2b24cf11b9db08249c78bf6ba400926eba4f204fd2498ed",
+         intel: "7579684d5f15a9e387bf86815d9f51ce9f664ce5750e2c4acb6720c417e0762f"
 
   url "https://github.com/keithadler/leanstudio/releases/download/v#{version}/LeanStudio-#{version}-osx-#{arch}.zip"
   name "Lean Studio"
@@ -21,7 +21,8 @@ cask "lean-studio" do
     strategy :github_latest
   end
 
-  depends_on macos: :monterey
+  # .NET 10 needs macOS 14 or later. macOS 27 runs only on Apple silicon; the Intel build is for Intel Macs on 14–26.
+  depends_on macos: ">= :sonoma"
 
   app "Lean Studio.app"
   # `leanstudio --mcp` runs the MCP server for AI assistants; `leanstudio path/to/project` opens a project.
